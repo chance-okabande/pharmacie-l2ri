@@ -36,7 +36,18 @@ class ProduitBase(ABC):
     @abstractmethod
     def necessite_alerte(self) -> bool:
         """Retourne True si le produit nécessite une alerte."""
-        pass
+        pass 
+
+    def ajouter_lot(self, numero_lot: str, date_expiration, quantite: int) -> None:
+        """Crée et ajoute un lot au produit (composition)."""
+        from models.lot import Lot
+        lot = Lot(numero_lot, date_expiration, quantite)
+        self.lots.append(lot)
+        logger.info(f"Lot {numero_lot} ajouté au produit {self.nom}")
+
+    def get_lots_par_statut(self, statut) -> list:
+        """Retourne les lots filtrés par statut."""
+        return [lot for lot in self.lots if lot.get_statut() == statut]
 
     def __str__(self) -> str:
         return f"{self.nom} | {self.code_cip} | {self.prix} FCFA | Stock: {self.quantite_stock}"
