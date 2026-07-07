@@ -1,0 +1,3 @@
+# Pas de dependances externes
+#Uniquement la bibliotheque standard python
+#sqlite3, json, csv, logging, abc, enum, datetime sont inclus dans Python
