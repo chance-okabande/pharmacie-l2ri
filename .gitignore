@@ -1,0 +1,4 @@
+*.pyc
+data/
+logs/
+_init_.py
